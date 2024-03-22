@@ -78,6 +78,7 @@ body {
     transition-property: width;
     transition-timing-function: var(--transition-function);
     transition-duration: var(--transition-duration);
+    flex-shrink: 0;
 
     & .top-container {
       --sub-container-height: 60px;
@@ -490,11 +491,104 @@ body {
   }
 
   & main {
+    display: flex;
     flex: 1;
+    flex-direction: column;
 
     & .admin-navigation {
       height: 77px;
+      display: flex;
+      justify-content: flex-end;
       background-color: var(--secondary-blue);
+      gap: 12rem;
+      padding: 1rem 2rem 0.75rem 2rem;
+      flex-shrink: 2;
+
+      & .label {
+        color: var(--primary-white);
+        text-align: center;
+        font-family: Roboto;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        text-transform: capitalize;
+      }
+
+      & .areas-container {
+        display: flex;
+        flex-direction: column;
+
+        & .icons-container {
+          display: flex;
+          gap: 3rem;
+
+          & .icon-container a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+          }
+
+          & .icon-container svg {
+            height: 16px;
+            width: 16px;
+            fill: var(--primary-white);
+          }
+
+          & .icon-container a:hover {
+            background-color: var(--primary-blue);
+          }
+
+          & .icon-container a:hover svg {
+            fill: var(--primary-orange);
+          }
+        }
+
+        & .text-container {
+          display: flex;
+          gap: 3rem;
+        }
+      }
+
+      & .actions-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        & .icons-container {
+          display: flex;
+          gap: 1rem;
+
+          & .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+          }
+
+          & .icon-container svg {
+            height: 16px;
+            width: 16px;
+            fill: var(--primary-white);
+          }
+
+          & .icon-container:hover {
+            background-color: var(--primary-blue);
+          }
+
+          & .icon-container:hover svg {
+            fill: var(--primary-orange);
+          }
+        }
+
+        & .text-container {
+          display: flex;
+        }
+      }
     }
   }
 }
