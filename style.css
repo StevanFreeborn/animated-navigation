@@ -124,7 +124,10 @@ body {
         align-items: center;
         padding: 0 1rem;
 
-        & svg {
+        & img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
           flex-shrink: 0;
         }
 
@@ -402,7 +405,7 @@ body {
           width: 100%;
           gap: 0.5rem;
           align-items: center;
-          padding: 0 1rem;
+          padding: 0 15px;
 
           & .user-name,
           & .user-role {
