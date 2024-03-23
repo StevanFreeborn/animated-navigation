@@ -494,6 +494,7 @@ body {
     display: flex;
     flex: 1;
     flex-direction: column;
+    overflow-x: auto;
 
     & .admin-navigation {
       --icon-container-size: 40px;
@@ -504,9 +505,9 @@ body {
       display: flex;
       justify-content: space-between;
       background-color: var(--secondary-blue);
-      gap: 250px;
       padding: 0.75rem 1.5rem;
-      overflow: hidden;
+      gap: 22px;
+      min-width: max-content;
       transition-property: height, padding;
       transition-timing-function: var(--transition-function);
       transition-duration: var(--transition-duration);
