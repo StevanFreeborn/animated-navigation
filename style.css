@@ -132,44 +132,66 @@ body {
           flex-shrink: 0;
         }
 
-        & .user-name {
-          color: var(--primary-white);
-          font-family: Roboto;
-          font-size: 0.8125rem;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-          letter-spacing: 0.00206rem;
-          text-wrap: nowrap;
-          flex-shrink: 0;
-        }
-
-        & .user-role {
+        & .user-info {
           display: flex;
-          align-items: center;
-          color: var(--primary-white);
-          font-family: Roboto;
-          font-size: 0.75rem;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          letter-spacing: 0.00188rem;
-          text-wrap: nowrap;
-          flex-shrink: 0;
-        }
+          flex-direction: column;
+          gap: 0.25rem;
 
-        & .user-name,
-        & .user-role {
-          transition-property: opacity;
-          transition-timing-function: var(--transition-function);
-          transition-duration: var(--transition-duration);
-        }
+          & .user-name {
+            color: var(--primary-white);
+            font-family: Roboto;
+            font-size: 0.8125rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 0.00206rem;
+            text-wrap: nowrap;
+            white-space: nowrap;
+          }
 
-        & .user-role:hover,
-        & .user-role:hover svg {
-          cursor: pointer;
-          color: var(--primary-orange);
-          fill: var(--primary-orange);
+          & .user-name span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 114px;
+            display: block;
+            overflow: hidden
+          }
+
+          & .user-role {
+            display: flex;
+            align-items: center;
+            color: var(--primary-white);
+            font-family: Roboto;
+            font-size: 0.75rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0.00188rem;
+            text-wrap: nowrap;
+            white-space: nowrap;
+          }
+
+          & .user-role span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 114px;
+            display: block;
+            overflow: hidden
+          }
+
+          & .user-name,
+          & .user-role {
+            transition-property: opacity;
+            transition-timing-function: var(--transition-function);
+            transition-duration: var(--transition-duration);
+          }
+
+          & .user-role:hover,
+          & .user-role:hover svg {
+            cursor: pointer;
+            color: var(--primary-orange);
+            fill: var(--primary-orange);
+          }
         }
       }
 
