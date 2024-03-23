@@ -329,7 +329,7 @@ body {
       flex-shrink: 0;
 
       & #adminButton,
-      & #collapseButton,
+      & #endUserCollapseButton,
       & #helpButton,
       & #statusButton {
         position: absolute;
@@ -344,7 +344,7 @@ body {
       }
 
       & #adminButton:hover,
-      & #collapseButton:hover,
+      & #endUserCollapseButton:hover,
       & #helpButton:hover,
       & #statusButton:hover {
         background-color: var(--secondary-blue);
@@ -359,7 +359,7 @@ body {
         transition-duration: var(--transition-duration)
       }
 
-      & #collapseButton {
+      & #endUserCollapseButton {
         left: 16px;
         bottom: 20px;
         transform: rotate(180deg);
@@ -473,7 +473,7 @@ body {
           bottom: 170px;
         }
 
-        & #collapseButton {
+        & #endUserCollapseButton {
           transform: rotate(360deg);
         }
 
@@ -496,13 +496,20 @@ body {
     flex-direction: column;
 
     & .admin-navigation {
+      --icon-container-size: 40px;
+      --icon-svg-size: 16px;
+      --transition-function: ease-out;
+      --transition-duration: 0.3s;
       height: 77px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       background-color: var(--secondary-blue);
-      gap: 12rem;
-      padding: 1rem 2rem 0.75rem 2rem;
-      flex-shrink: 2;
+      gap: 250px;
+      padding: 0.75rem 1.5rem;
+      overflow: hidden;
+      transition-property: height, padding;
+      transition-timing-function: var(--transition-function);
+      transition-duration: var(--transition-duration);
 
       & .label {
         color: var(--primary-white);
@@ -515,25 +522,32 @@ body {
       }
 
       & .areas-container {
+        --grid-columns-template: repeat(12, 1fr);
+        --grid-columns-gap: 22px;
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
+        gap: 0.25rem;
 
         & .icons-container {
-          display: flex;
-          gap: 3rem;
+          display: grid;
+          grid-template-columns: var(--grid-columns-template);
+          place-items: center;
+          gap: var(--grid-columns-gap);
+          transform-origin: left;
 
           & .icon-container a {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 30px;
-            width: 30px;
+            height: var(--icon-container-size);
+            width: var(--icon-container-size);
             border-radius: 50%;
           }
 
           & .icon-container svg {
-            height: 16px;
-            width: 16px;
+            height: var(--icon-svg-size);
+            width: var(--icon-svg-size);
             fill: var(--primary-white);
           }
 
@@ -547,32 +561,39 @@ body {
         }
 
         & .text-container {
-          display: flex;
-          gap: 3rem;
+          display: grid;
+          grid-template-columns: var(--grid-columns-template);
+          place-items: center;
+          gap: var(--grid-columns-gap);
         }
       }
 
       & .actions-container {
+        --grid-columns-template: repeat(2, 1fr);
+        --grid-columns-gap: 15px;
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
 
         & .icons-container {
-          display: flex;
-          gap: 1rem;
+          display: grid;
+          grid-template-columns: var(--grid-columns-template);
+          place-items: center;
+          gap: var(--grid-columns-gap);
 
           & .icon-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 30px;
-            width: 30px;
+            height: var(--icon-container-size);
+            width: var(--icon-container-size);
             border-radius: 50%;
           }
 
           & .icon-container svg {
-            height: 16px;
-            width: 16px;
+            height: var(--icon-svg-size);
+            width: var(--icon-svg-size);
             fill: var(--primary-white);
           }
 
@@ -583,12 +604,116 @@ body {
           & .icon-container:hover svg {
             fill: var(--primary-orange);
           }
+
+          #adminCollapseButton {
+            transition-property: transform;
+            transition-timing-function: var(--transition-function);
+            transition-duration: var(--transition-duration);
+          }
         }
 
         & .text-container {
-          display: flex;
+          display: grid;
+          grid-template-columns: var(--grid-columns-template);
+          place-items: center;
+          gap: var(--grid-columns-gap);
+        }
+      }
+
+      &.collapsed {
+        height: 41px;
+        padding: 0rem 1.5rem;
+
+        & .areas-container {
+          & .icons-container {
+            animation-name: shrink-areas-icons-container;
+            animation-timing-function: var(--transition-function);
+            animation-duration: var(--transition-duration);
+            animation-fill-mode: forwards;
+          }
+        }
+
+        & .actions-container {
+          & .icons-container {
+            animation-name: shrink-actions-icons-container;
+            animation-timing-function: var(--transition-function);
+            animation-duration: var(--transition-duration);
+            animation-fill-mode: forwards;
+
+            #adminCollapseButton {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+
+      &.expanded {
+        & .areas-container {
+          & .icons-container {
+            animation-name: expand-areas-icons-container;
+            animation-timing-function: var(--transition-function);
+            animation-duration: var(--transition-duration);
+            animation-fill-mode: forwards;
+          }
+        }
+
+        & .actions-container {
+          & .icons-container {
+            animation-name: expand-actions-icons-container;
+            animation-timing-function: var(--transition-function);
+            animation-duration: var(--transition-duration);
+            animation-fill-mode: forwards;
+          }
         }
       }
     }
+  }
+}
+
+@keyframes shrink-areas-icons-container {
+  0% {
+    transform: scale(1);
+    gap: 22px;
+  }
+
+  100% {
+    transform: scale(0.85);
+    gap: 0px;
+  }
+}
+
+@keyframes expand-areas-icons-container {
+  0% {
+    transform: scale(0.85);
+    gap: 0px;
+  }
+
+  100% {
+    transform: scale(1);
+    gap: 22px;
+  }
+}
+
+@keyframes shrink-actions-icons-container {
+  0% {
+    transform: scale(1);
+    gap: 15px;
+  }
+
+  100% {
+    transform: scale(0.85);
+    gap: 0px;
+  }
+}
+
+@keyframes expand-actions-icons-container {
+  0% {
+    transform: scale(0.85);
+    gap: 0px;
+  }
+
+  100% {
+    transform: scale(1);
+    gap: 15px;
   }
 }
